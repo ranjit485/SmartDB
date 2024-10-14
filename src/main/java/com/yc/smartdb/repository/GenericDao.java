@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,9 +26,7 @@ public class GenericDao {
         return jdbcTemplate.query(sql, new RowMapper<Map<String, Object>>() {
             @Override
             public Map<String, Object> mapRow(ResultSet rs, int rowNum) throws SQLException {
-                // Use a Map to hold the row data
-                Map<String, Object> row = new java.util.HashMap<>();
-                // Get metadata for the result set
+                Map<String, Object> row = new HashMap<>();
                 int columnCount = rs.getMetaData().getColumnCount();
                 for (int i = 1; i <= columnCount; i++) {
                     String columnName = rs.getMetaData().getColumnName(i);

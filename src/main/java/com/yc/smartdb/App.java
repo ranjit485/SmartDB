@@ -9,14 +9,22 @@ import picocli.CommandLine;
 import java.util.Scanner;
 
 public class App {
+
+    static ApplicationContext context;
+
+    public static ApplicationContext getContext() {
+        return context;
+    }
+
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        context = new AnnotationConfigApplicationContext(AppConfig.class);
 
         MyCommand command = context.getBean(MyCommand.class);
 
         int exit = new CommandLine(command).execute(args);
 
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to IntelliDB, Chat with databases type -h /--help for Help");
 
         while (true) {
 
@@ -25,7 +33,7 @@ public class App {
 
             // Exit condition
             if ("exit".equalsIgnoreCase(input)) {
-                System.out.println("Exiting calculator. Goodbye!");
+                System.out.println("Exiting SmartDB. Goodbye!");
                 break;
             }
 
@@ -40,7 +48,7 @@ public class App {
             }
         }
 
-        scanner.close();
+
     }
 
 }
