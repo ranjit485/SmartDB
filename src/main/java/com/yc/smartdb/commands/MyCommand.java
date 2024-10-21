@@ -32,6 +32,8 @@ public class MyCommand implements Runnable {
 
     @CommandLine.Option(names = {"-q", "--query"}, arity = "0..*", description = "Enter SQL queries as separate words")
     private List<String> queryParts;
+    @CommandLine.Option(names = {"-a", "--api"}, arity = "0..*", description = "Config ai API..")
+    private boolean configAPI;
 
 
     @Override

@@ -1,7 +1,7 @@
 package com.yc.smartdb.config;
 
 import com.yc.smartdb.commands.MyCommand;
-import com.yc.smartdb.model.DatabaseProps;
+import com.yc.smartdb.model.AiProperties;
 import com.yc.smartdb.repository.GenericDao;
 import com.yc.smartdb.service.ApplicationService;
 import org.springframework.context.annotation.Bean;
@@ -9,8 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
-import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = "com.yc.smartdb")
@@ -40,4 +38,10 @@ public class AppConfig {
     public JdbcTemplate getJdbcTemplate() {
         return new JdbcTemplate(dataSource());
     }
+
+   @Bean
+    public AiProperties getAiProperties(){
+        return new AiProperties();
+    }
+
 }

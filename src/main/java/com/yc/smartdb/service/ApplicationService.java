@@ -6,6 +6,7 @@ import de.vandermeer.asciitable.AsciiTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.Scanner;
 
 import static com.yc.smartdb.rainbow.ConsoleColor.YELLOW;
 
+@Service
 public class ApplicationService {
 
     private final GenericDao genericDao;
