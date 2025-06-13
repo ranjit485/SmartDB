@@ -5,13 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="898427cd-2073-4342-9e69-1fd857e2c9f8" name="Changes" comment="user can execute query .. update">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/model/AiProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/service/AiService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/constants/AppConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/controller/VannaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/model/OllamaResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/service/LocalOllamaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/service/SchemaExtractorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/service/VannaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/sampledb.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/SmartDB_jar/SmartDB.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SmartDB_jar/SmartDB.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/commands/MyCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/commands/MyCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/model/DatabaseProps.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/service/ApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yc/smartdb/service/ApplicationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,10 +62,11 @@
     &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;Smart Tomcat.Tomcat: SmartDB.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/MyApps/Mysql/Connector&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.43333334&quot;,

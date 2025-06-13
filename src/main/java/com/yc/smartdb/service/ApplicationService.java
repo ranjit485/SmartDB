@@ -1,6 +1,7 @@
 package com.yc.smartdb.service;
 
 import com.yc.smartdb.App;
+import com.yc.smartdb.constants.AppConstants;
 import com.yc.smartdb.repository.GenericDao;
 import de.vandermeer.asciitable.AsciiTable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class ApplicationService {
         this.genericDao = genericDao;
     }
 
+    @Autowired SchemaExtractorService schemaExtractorService;
 
     public List<Map<String, Object>> execQuery(String query) {
         return genericDao.executeQuery(query);
@@ -74,6 +76,14 @@ public class ApplicationService {
         driverManagerDataSource.setUrl(dbUrl);
 
         System.out.println("Database Configured successfully");
+        try {
+            String schema = schemaExtractorService.getSchemaAsString();
+            System.out.println("Schema extracted successfully:");
+            AppConstants.DB_SCHEMA=schema;
+            System.out.println(schema);
+        } catch (Exception e) {
+            System.out.println("Error extracting schema: " + e.getMessage());
+        }
 
     }
 
@@ -89,3 +99,4 @@ public class ApplicationService {
 }
 
 //    jdbc:mysql://localhost:3306/student
+//    jdbc:mysql://localhost:3306/sampledb
