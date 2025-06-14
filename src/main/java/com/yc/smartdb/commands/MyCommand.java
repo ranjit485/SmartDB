@@ -31,77 +31,84 @@ public class MyCommand implements Runnable {
         this.vannaService = vannaService;
     }
 
-    @CommandLine.Option(names = {"-d", "--database"}, description = "⚙️ Configure Database")
+    @CommandLine.Option(names = {"-d", "--database"}, description = "⚙️ Configure Database manually")
     private boolean configureDatabase;
 
-    @CommandLine.Option(names = {"-s", "--showdb"}, description = "🔍 Show database properties")
+    @CommandLine.Option(names = {"-s", "--showdb"}, description = "🔍 Show configured database properties")
     private boolean showDatabaseProps;
 
-    @CommandLine.Option(names = {"-r", "--run"}, description = "▶️ Run SQL query")
+    @CommandLine.Option(names = {"-r", "--run"}, description = "▶️ Run a SQL query")
     private boolean runSql;
 
     @CommandLine.Option(names = {"-q", "--query"}, arity = "0..*", description = "📝 SQL query parts")
     private List<String> queryParts;
 
-    @CommandLine.Option(names = {"-a", "--ai"}, description = "🤖 AI prompt for SQL generation", arity = "0..*", split = " ")
+    @CommandLine.Option(names = {"-a", "--ai"}, description = "🤖 Prompt for AI-generated SQL", arity = "0..*", split = " ")
     private List<String> aiPromptParts;
 
-    @CommandLine.Option(names = {"-t", "--test"}, description = "🧪 Test Vanna integration")
+    @CommandLine.Option(names = {"-t", "--test"}, description = "🧪 Test Vanna service")
     private boolean test;
 
     @Override
     public void run() {
         try {
+            // Manual DB Configuration
             if (configureDatabase) {
                 configureDatabaseWithScanner();
             }
 
+            // Show DB Props
             if (showDatabaseProps) {
                 showDatabaseProps();
             }
 
+            // Run raw SQL
             if (runSql) {
                 executeSqlQuery();
             }
 
+            // AI-based query generation
             if (aiPromptParts != null && !aiPromptParts.isEmpty()) {
                 String prompt = String.join(" ", aiPromptParts);
                 generateSqlWithAi(prompt);
             }
 
+            // Vanna testing
             if (test) {
                 testVanna();
             }
 
+            // Help fallback
             if (!configureDatabase && !showDatabaseProps && !runSql &&
                     (aiPromptParts == null || aiPromptParts.isEmpty()) && !test) {
-                System.out.println("ℹ️ No command provided. Use -h for help.");
+                System.out.println("ℹ️ No command provided. Use -h or --help to see available options.");
             }
 
         } catch (Exception e) {
-            System.out.println("❌ Error: " + e.getMessage());
+            System.out.println("❌ Unexpected Error: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     private void configureDatabaseWithScanner() {
-        System.out.println("⚙️ Configuring database...");
+        System.out.println("⚙️ Starting manual DB configuration...");
         applicationService.setDatabaseProps();
+        System.out.println("✅ Database configuration complete.");
     }
 
     private void showDatabaseProps() {
-        System.out.println("📋 Showing database properties:");
+        System.out.println("📋 Current DB Properties:");
         applicationService.getDatabaseProps();
     }
 
     private void executeSqlQuery() {
         if (queryParts == null || queryParts.isEmpty()) {
-            System.out.println("⚠️ Please provide a SQL query using -q option.");
+            System.out.println("⚠️ No query provided. Use `-q \"SELECT * FROM table\"` along with `-r`.");
             return;
         }
 
         String query = String.join(" ", queryParts);
-        System.out.println("▶️ Executing SQL query: " + query);
+        System.out.println("▶️ Executing query: " + query);
 
         try {
             List<Map<String, Object>> result = applicationService.execQuery(query);
@@ -112,21 +119,21 @@ public class MyCommand implements Runnable {
     }
 
     private void generateSqlWithAi(String prompt) {
-        System.out.println("🤖 Generating SQL with AI for prompt: " + prompt);
+        System.out.println("🤖 Sending prompt to AI: " + prompt);
         try {
             localOllamaService.generateSqlWithAi(AppConstants.DB_SCHEMA, prompt);
         } catch (Exception e) {
-            System.out.println("❌ AI SQL Generation Failed: " + e.getMessage());
+            System.out.println("❌ Failed to generate SQL with AI: " + e.getMessage());
         }
     }
 
     private void testVanna() {
-        System.out.println("🧪 Testing Vanna...");
+        System.out.println("🧪 Calling Vanna...");
         try {
             String response = vannaService.askVanna("Contact of bus department");
-            System.out.println("✅ Vanna Response: " + response);
+            System.out.println("✅ Vanna says: " + response);
         } catch (Exception e) {
-            System.out.println("❌ Vanna Test Failed: " + e.getMessage());
+            System.out.println("❌ Vanna Test Error: " + e.getMessage());
         }
     }
 }

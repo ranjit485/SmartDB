@@ -33,7 +33,7 @@ public class LocalOllamaService {
                 "stream", false,
                 "prompt", "You are a highly skilled SQL query generator. Given the following database schema:\n"
                         + schema +
-                        "\n\nGenerate a valid and efficient SQL query for this request:\n"
+                        "\n\nGenerate a valid and efficient SQL query for this request only query no extra stuff:\n"
                         + userQuestion
         );
 
@@ -41,11 +41,11 @@ public class LocalOllamaService {
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
         String jsonResponse = restTemplate.postForObject(apiUrl + "/api/generate", entity, String.class);
 
-        System.out.println(jsonResponse);
         // Parse the JSON response into the OllamaResponse object
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             OllamaResponse ollamaResponse = objectMapper.readValue(jsonResponse, OllamaResponse.class);
+            System.out.println(ollamaResponse.getResponse());
             return ollamaResponse;
         } catch (Exception e) {
             e.printStackTrace();
