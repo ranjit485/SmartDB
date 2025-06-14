@@ -41,6 +41,7 @@ public class LocalOllamaService {
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
         String jsonResponse = restTemplate.postForObject(apiUrl + "/api/generate", entity, String.class);
 
+        System.out.println(jsonResponse);
         // Parse the JSON response into the OllamaResponse object
         ObjectMapper objectMapper = new ObjectMapper();
         try {
